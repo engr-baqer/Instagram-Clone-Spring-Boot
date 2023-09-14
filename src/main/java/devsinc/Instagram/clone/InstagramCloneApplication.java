@@ -11,5 +11,4 @@ public class InstagramCloneApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(InstagramCloneApplication.class, args);
 	}
-
 }

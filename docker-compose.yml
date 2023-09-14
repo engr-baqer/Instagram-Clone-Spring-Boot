@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  instagram:
+    image: baqer/instagram-clone:0.0.1-SNAPSHOT
+    restart: always
+    container_name: Instagram-APIs
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING.DATASOURCE.URL: jdbc:mysql://instagram-database:3306/Instagram
+      SPRING.DATASOURCE.USERNAME: springstudent
+      SPRING.DATASOURCE.PASSWORD: springstudent
+    depends_on:
+      - instagram-database
+    networks:
+      - Instagram-clone
+
+  instagram-database:
+    image: mysql:8.0.27
+    restart: always
+    container_name: Instagram-database
+    environment:
+      DATABASE_HOST: docker-mysql
+      DATABASE_PORT: 3306
+      MYSQL_ROOT_PASSWORD: baqer123
+      MYSQL_DATABASE: Instagram
+      MYSQL_USER: springstudent
+      MYSQL_PASSWORD: springstudent
+    networks:
+      - Instagram-clone
+
+
+
+networks:
+  Instagram-clone:

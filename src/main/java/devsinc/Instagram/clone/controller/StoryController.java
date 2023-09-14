@@ -4,6 +4,7 @@ import devsinc.Instagram.clone.service.Interface.StoryService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,7 +17,7 @@ import java.util.List;
 @Tag(name = "Story API")
 public class StoryController {
     private final StoryService storyService;
-    @PostMapping("/story/addStory")
+    @PostMapping(value = "/story/addStory", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> addStory(@RequestParam("story") MultipartFile story,
                                       HttpServletRequest request){
         return ResponseEntity.ok().body(storyService.addStory(story,
